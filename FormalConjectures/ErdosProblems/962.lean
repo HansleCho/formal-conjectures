@@ -22,6 +22,8 @@ import FormalConjectures.Util.ProblemImports
 - [erdosproblems.com/962](https://www.erdosproblems.com/962)
 - [Er65] Erdős, P., Extremal problems in number theory. Proc. Sympos. Pure Math., Vol. VIII (1965), 181-189.
 - [Er76e] Erdős, P., Problems and results on consecutive integers. Publ. Math. Debrecen (1976), 271-282.
+- [Tang](https://github.com/QuanyuTang/erdos-problem-962/blob/main/On_Erd%C5%91s_Problem_962.pdf)
+- [Tao](https://www.erdosproblems.com/forum/thread/962)
 -/
 
 open Classical Filter Real
@@ -29,16 +31,16 @@ open Classical Filter Real
 namespace Erdos962
 
 /--
-`Erdos962Prop n k` : there exists `m ≤ n` such that each of
-`m+1, ..., m+k` has a prime divisor strictly larger than `k`.
+`Erdos962Prop n k` : there exists $m \le n$ such that each of
+$m+1, \ldots, m+k$ has a prime divisor strictly larger than $k$.
 -/
 def Erdos962Prop (n k : ℕ) : Prop :=
   ∃ m ≤ n, ∀ i ∈ Set.Icc 1 k,
     ∃ p : ℕ, Nat.Prime p ∧ k < p ∧ p ∣ (m + i)
 
 /--
-Let `k(n)` be the maximal `k` such that there exists `m ≤ n` with
-`m+1, ..., m+k` each divisible by a prime `> k`.
+Let $k(n)$ be the maximal $k$ such that there exists $m \le n$ with
+$m+1, \ldots, m+k$ each divisible by a prime $> k$.
 -/
 noncomputable def k (n : ℕ) : ℕ :=
   Nat.findGreatest (fun k => Erdos962Prop n k) n
@@ -46,7 +48,7 @@ noncomputable def k (n : ℕ) : ℕ :=
 /--
 Main conjecture:
 
-`log k(n) ≤ (log n)^(1/2 + o(1))`
+$\log k(n) \le (\log n)^{(1/2 + o(1))}$
 -/
 @[category research open, AMS 11]
 theorem erdos_962 :
@@ -59,9 +61,9 @@ theorem erdos_962 :
   sorry
 
 /--
-Tang's lower bound:
+Tang's lower bound [Tang]:
 
-`log k(n) ≥ (1/√2 - o(1)) * sqrt(log n * log log n)`
+$\log k(n) \ge (1/\sqrt{2} - o(1)) * \sqrt{\log n * \log \log n}$
 -/
 @[category research solved, AMS 11]
 theorem erdos_962.variants.tang_lower_bound :
@@ -74,9 +76,9 @@ theorem erdos_962.variants.tang_lower_bound :
   sorry
 
 /--
-Tao's upper bound:
+Tao's upper bound [Tao]:
 
-`k(n) ≤ (1 + o(1)) * n^(1/2)`
+$k(n) \le (1 + o(1)) * n^{1/2}$
 -/
 @[category research solved, AMS 11]
 theorem erdos_962.variants.tao_upper_bound :
